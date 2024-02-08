@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spider man playstation (Rigged)
+* source:	https://sketchfab.com/3d-models/spider-man-playstation-rigged-e132c0ec7eee4d1e8c8e3916bcad8085
+* author:	As7 3d models (https://sketchfab.com/As7312008)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spider man playstation (Rigged)" (https://sketchfab.com/3d-models/spider-man-playstation-rigged-e132c0ec7eee4d1e8c8e3916bcad8085) by As7 3d models (https://sketchfab.com/As7312008) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
