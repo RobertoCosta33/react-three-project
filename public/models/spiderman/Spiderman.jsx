@@ -2,26 +2,45 @@ import React, { useRef, useState, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useCharactersAnimations } from "@/contexts/CharactersAnimations/CharactersAnimations";
 import { useThree } from "@react-three/fiber";
+import CustomButton from "@/components/CustomButton";
 
 const Spiderman = (props) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("../models/spiderman/spiderman.gltf");
+  const { nodes, materials, animations } = useGLTF(
+    "../models/spiderman/spiderman.gltf"
+  );
   const { setAnimations, animationIndex } = useCharactersAnimations();
 
   const { actions, names } = useAnimations(animations, group);
   const { camera } = useThree();
 
+  const [focusPart, setFocusPart] = useState(null);
+
   useEffect(() => {
     setAnimations(names);
-  }, [names])
+  }, [names]);
 
   useEffect(() => {
     actions[names[animationIndex]].reset().fadeIn(0.5).play();
 
     return () => {
       actions[names[animationIndex]].fadeOut(0.5);
-    }
+    };
   }, [animationIndex]);
+
+  const handlePartClick = (partName) => {
+    setFocusPart(partName);
+  };
+
+  useEffect(() => {
+    if (focusPart) {
+      const part = group.current.getObjectByName(focusPart);
+      if (part) {
+        camera.position.copy(part.position);
+        camera.lookAt(part.position.x, part.position.y, part.position.z);
+      }
+    }
+  }, [focusPart, camera]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -57,13 +76,29 @@ const Spiderman = (props) => {
                   <group name="27_webshooterenvred_1_0_0001_83" />
                   <group name="27_webshooterenvsilv_1_0_0001_84" />
                   <skinnedMesh
+                    onClick={() => handlePartClick("22_body_0_2_20_20001_65")}
                     castShadow
                     name="Object_7"
                     geometry={nodes.Object_7.geometry}
                     material={materials["22_body_0.2_20_20"]}
                     skeleton={nodes.Object_7.skeleton}
-                  />
+                  >
+                    <CustomButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePartClick("22_body_0_2_20_20001_65");
+                      }}
+                    />
+                  </skinnedMesh>
                   <skinnedMesh
+                    onClick={() => {
+                      const userConfirmed = window.confirm(
+                        "Deseja ativar esta ação?"
+                      );
+                      if (userConfirmed) {
+                        handlePartClick("22_body_0_2_20_20001_70");
+                      }
+                    }}
                     castShadow
                     name="Object_9"
                     geometry={nodes.Object_9.geometry}
@@ -204,7 +239,7 @@ const Spiderman = (props) => {
       </group>
     </group>
   );
-}
+};
 
 export default Spiderman;
 

@@ -1,5 +1,5 @@
 import { Environment, OrbitControls } from "@react-three/drei";
-// import Dragon from "../../../public/models/dragon/Dragon";
+import Dragon from "../../../public/models/dragon/Dragon";
 import Spiderman from "../../../public/models/spiderman/Spiderman";
 
 const Experience = () => {
@@ -16,8 +16,8 @@ const Experience = () => {
       />
 
       <group position={[0, -1, 0]}>
-        {/* <Dragon scale={[0.2, 0.2, 0.2]} /> */}
-        <Spiderman scale={[0.2, 0.2, 0.2]} />
+        <Dragon scale={[0.2, 0.2, 0.2]} />
+        {/* <Spiderman scale={[0.2, 0.2, 0.2]} /> */}
       </group>
 
       <mesh
